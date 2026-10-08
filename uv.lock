@@ -1,0 +1,41 @@
+version = 1
+revision = 3
+requires-python = ">=3.10"
+
+[manifest]
+members = [
+    "acme-db",
+    "acme-linkage",
+    "acme-tools",
+]
+
+[[package]]
+name = "acme-db"
+version = "0.1.0"
+source = { editable = "packages/acme-db" }
+
+[[package]]
+name = "acme-linkage"
+version = "0.1.0"
+source = { editable = "packages/acme-linkage" }
+dependencies = [
+    { name = "acme-db" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "acme-db", editable = "packages/acme-db" }]
+
+[[package]]
+name = "acme-tools"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "acme-db" },
+    { name = "acme-linkage" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "acme-db", editable = "packages/acme-db" },
+    { name = "acme-linkage", editable = "packages/acme-linkage" },
+]
